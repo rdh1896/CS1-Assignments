@@ -59,17 +59,23 @@ def match(string1, string2):
     """
 
     best_length = 0
+    max_length1 = len(string1) - 1
+    max_length2 = len(string2) - 1
     # for all possible string1 start points
-    for idx1 in range(len(string1)-1):
+    for idx1 in range(max_length1):
         # for all possible string2 start points
-        for idx2 in range(len(string2)-1):
+        for idx2 in range(max_length2):
             # check if these characters match
             if string1[idx1] == string2[idx2]:
                 this_match_count = 1
                 # see how long the match continues
-                while string1[idx1 + this_match_count] == \
-                        string2[idx2 + this_match_count]:
-                    this_match_count += 1
+                while idx1 + this_match_count <= max_length1 and idx2 + this_match_count <= max_length2:
+                    current_index1 = idx1 + this_match_count
+                    current_index2 = idx2 + this_match_count
+                    if string1[current_index1] == string2[current_index2]:
+                        this_match_count += 1
+                    else:
+                        break
 
                 # compare to best so far
                 if this_match_count > best_length:
@@ -79,6 +85,14 @@ def match(string1, string2):
     return best_length
 
 def test_cases():
-    print(match("metamorphosis", "mortem"))
+    print("Expected Output: 3 |", " Actual Output: ", match("APPle", "APPLe"))
+    print("Expected Output: 2 |", " Actual Output: ", match("ApPLe", "APPLE"))
+    print("Expected Output: 3 |", " Actual Output: ", match("aPPLE", "apPLEs"))
+    print("Expected Output: 3 |", " Actual Output: ", match("established", "ballistic"))
+    print("Expected Output: 3 |", " Actual Output: ", match("ballistic", "established"))
+    print("Expected Output: 2 |", " Actual Output: ", match("98242435451241234", "58594762398745623"))
+    print("Expected Output: 5 |", " Actual Output: ", match("978321649812814092841431214", "2139486897234619284187401"))
+    print("Expected Output: 5 |", " Actual Output: ", match("fished", "established"))
+    print("Expected Output: 5 |", " Actual Output: ", match("established", "fished"))
 
 test_cases()

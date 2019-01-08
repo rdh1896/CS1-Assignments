@@ -1,0 +1,55 @@
+Name: Russell Harvey
+File: report.txt
+Assignment: Lab 06
+Language: English
+
+Questions for Lab 06:
+
+1. The pivot value is a value which quick sort/select uses as a fulcrum to analyze values in a list. if the value
+is smaller than it, it will be appended to a smaller list and vice-versa for larger values. This allows quick sort/
+select to properly organize the terms in an unsorted list into one that is sorted. It does this by recursively calling
+the quick sort function over and over until your left with one item in a list which you can then add all the individual
+lists back together in a sorted list. Pivot does not necessarily have to be the middle term. Any term should work for
+pivot because it will still judge any items smaller or larger than it correctly and end up organizing the list.
+The time complexity would remain the same too so long as the list is unsorted meaning that the middle term and any
+other given term for an unsorted list should take about the same time to compute. If the list was sorted however, and
+you picked the first or last term, your time complexity would shoot up because quick sort/select would have to run many
+times over before the list is "sorted" properly.
+
+2. In order to test quick selects effectiveness, you would need to run it through many tests. To fully exercise
+quick select you should test it for cases such as "k" being 1 or the length of the list, to see if it correctly
+finds the smallest and largest values. You should also test it with any number in between those, for the lab we
+tested its effectiveness in finding the middle value in the list, but you could also do the same with any index
+in the list. It would be helpful to do this with a small list first, so you can easily reason what the correct
+output would be with any given "k" value and run it through a test for every index of the list. You could even
+run "k" for every term in the list (i.e. 1 - len(lst)) and then append them to a new list to see if they were
+in numerical order. This would also show the output for every "k" input which you could match up in your unsorted
+list.
+
+3. Quick select works much faster than quick sort does every time. This likely because instead of sorting the list
+then finding the median like the quick sort method. Quick select finds the median without even ever actually sorting
+the list which shaves off a lot of time. Here are some examples of my runs to prove this.
+
+Test 1 - 10k Entries (Even List):
+Trial One -
+quicksort: 0.034655094146728516 sec
+quickselect: 0.00709986686706543 sec <- About 1 order of magnitude faster
+Trial Two -
+quicksort: 0.034146785736083984 sec
+quickselect: 0.0073490142822265625 sec <- Very similar to trial one
+
+Test 2 - 500k Entries (Even List):
+Trial One -
+quicksort: 4.941026210784912 sec
+quickselect: 1.3331687450408936 sec <- Almost 4 seconds faster
+Trial Two -
+quicksort: 5.329941034317017 sec
+quickselect: 1.4521501064300537 sec <- Similar to Trial 1, quicksort was a touch slower
+
+Test 3 - 500k Entries (Odd List):
+Trial One -
+quicksort: 2.365499973297119 sec
+quickselect: 0.2022380828857422 sec <- Little over 2 seconds faster
+Trial Two -
+quicksort: 2.3037970066070557 sec
+quickselect: 0.23694491386413574 sec <- Almost the same as last time
